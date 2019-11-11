@@ -1,0 +1,37 @@
+const tintColor = '#2f95dc';
+
+export default {
+  tintColor,
+  tabIconDefault: 'rgba(254,254,254,0.5)',
+  tabIconSelected: tintColor,
+  tabBarbg:'rgba(0,0,0,0.3)',
+  tabBar: '#fefefe',
+  errorBackground: 'red',
+  errorText: '#fff',
+  warningBackground: '#EAEB5E',
+  warningText: '#666804',
+  noticeBackground: tintColor,
+  noticeText: '#fff',
+  backgroudColor:'transparent',
+  violetColor:'#473c89',
+  blueColor:'#454545',
+  blueHardColor:'white',
+  redColor:'#ef1c63',
+  warningColor:'#ce0202',
+  orangeColor:'#f03709',
+  yellowColor:'#efb11c',
+  inputboxColor:'rgba(254,254,254,0.6)',
+  darkfontColor:'white',
+  inputfontColor:'#414042',
+  gradient :'linear-gradient(0deg, #d1d2d4 0%, #ffffff 20%,#ffffff 80%,#d1d2d4 100%)',
+  gradientProfile :'linear-gradient(0deg, #d1d2d4 0%, #ffffff 10%,#ffffff 80%,#d1d2d4 100%)',
+
+  gradientBut: 'linear-gradient(112deg, #ef1c63 0%, #efb11c 100%)',
+  gradientVoucher: 'linear-gradient(45deg, #7530d4 0%,#ef711c 50%, #efb11c 100%)',
+
+  whiteColor:'white',
+  redTrans:'rgba(254,0,0,0.25)',
+  orangeTrans:'#e27554',
+  popupDiag:'#dd437b',
+  inactiveTab:'#ababab',
+};
