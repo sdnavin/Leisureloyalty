@@ -92,7 +92,7 @@ apply from: "../../node_modules/react-native/react.gradle"
  * Upload all the APKs to the Play Store and people will download
  * the correct one based on the CPU architecture of their device.
  */
-def enableSeparateBuildPerCPUArchitecture = false
+def enableSeparateBuildPerCPUArchitecture = true
 
 /**
  * Run Proguard to shrink the Java bytecode in release builds.
@@ -137,14 +137,14 @@ android {
       dexOptions {
        javaMaxHeapSize "4g"
    }
+    aaptOptions { cruncherEnabled = false }
 
     defaultConfig {
         applicationId "com.leisureloyalty"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 1
-        versionName "1.0"
-        missingDimensionStrategy 'react-native-camera', 'mlkit'
+        versionCode 7
+        versionName "1.0.7"
     }
     splits {
         abi {
@@ -202,6 +202,7 @@ android {
 
 dependencies {
     addUnimodulesDependencies()
+    implementation project(':react-native-splash-screen')
     implementation 'androidx.appcompat:appcompat:1.1.0-rc01'
 implementation 'androidx.swiperefreshlayout:swiperefreshlayout:1.1.0-alpha02'
     implementation fileTree(dir: "libs", include: ["*.jar"])

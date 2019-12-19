@@ -39,9 +39,11 @@ export default class CacheImage extends React.Component {
 
   imagedone(){
     var done=this.props.onDone;
+    // console.log("Done"+this.props.uri);
+    
     if(done!==undefined){
       done();
-      console.log("Done");
+      // console.log("Done");
     }
   }
   

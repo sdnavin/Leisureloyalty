@@ -8,7 +8,7 @@ import TabBarIcon from './TabBarIcon';
 import * as SecureStore from 'expo-secure-store';
 
 import homebg from'../../assets/bg/bg-01.jpg'
-import {widthPercentageToDP as wp, heightPercentageToDP as hp, heightPercentageToDP} from 'react-native-responsive-screen';
+import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
 
 import i18n from 'i18n-js';
 

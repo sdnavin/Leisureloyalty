@@ -212,7 +212,8 @@ export default class ClaimsHandle extends Component {
                     }
                     
                     getTransfers(){
-                        if(this.props.profile==undefined||(this.props.profile!=undefined&&(this.props.claims.length==0||this.props.claims==undefined))){
+                        console.log(this.props.claims);
+                        if(this.props.profile==undefined||(this.props.profile!=undefined&&(this.props.claims.length==0||(this.props.claims!==undefined&&this.props.claims.length<=0)||this.props.claims==undefined))){
                             return(
                                 <View>
                                 {UiElements.drawGap(10)}

@@ -9,7 +9,7 @@ import {connect} from 'react-redux';
 
   
 class AppVersionChecker extends PureComponent {
-    
+
     state = {
       needUpdate: false,
       canshow:false
@@ -27,12 +27,12 @@ class AppVersionChecker extends PureComponent {
     CurrentiOSversion='1.0.2';
     CurrentAndroidversion='1.0.7';
 
-    
-    checkAppVersion(){
+  checkAppVersion() {
       if(Platform.OS==='ios'){
         //On IOS u can do
         getAppstoreAppVersion("1483032774") //put any apps id here
         .then(appVersion => {
+          // console.log(appVersion+"//"+this.CurrentiOSversion);
           // console.log("iOS app version on appstore", appVersion);
           if(appVersion!==this.CurrentiOSversion){
             this.setState({needUpdate:true});

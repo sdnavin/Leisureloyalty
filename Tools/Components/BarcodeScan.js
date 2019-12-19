@@ -47,17 +47,17 @@ export default class BarcodeScan extends React.Component {
       <SafeAreaView style={{ flex:1,marginTop:20}} >
       <View
       style={{
-        // flex: 1,
+        flex: 1,
         flexDirection: 'column',
         justifyContent: 'center',
-        height: heightPercentageToDP('30%') ,
+        // height: heightPercentageToDP('30%') ,
         marginBottom:15
       }}>
       
       <BarcodeScanner
       navigation={this.props.navigation}
-      onBarCodeScanned={this.handleBarCodeScanned}
-      style={{width:width,height:heightPercentageToDP('20%'),backgroundColor:'white'}}
+      onBarCodeScanGotData={this.handleBarCodeScanned}
+      style={{flex:1,backgroundColor:'white'}}
       // style={StyleSheet.absoluteFillObject}
       />
       </View>
@@ -83,7 +83,7 @@ export default class BarcodeScan extends React.Component {
       if(edata===undefined)
         assignValue('');
       else{  
-      assignValue(edata.data);
+      assignValue(edata);
       }
     }
   }

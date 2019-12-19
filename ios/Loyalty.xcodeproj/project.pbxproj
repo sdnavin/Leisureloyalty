@@ -653,12 +653,12 @@
 			baseConfigurationReference = 4FCB9E6F465AF9C9E5B9EE5C /* Pods-Loyalty.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CURRENT_PROJECT_VERSION = 1.0.7;
+				CURRENT_PROJECT_VERSION = 1.0.8;
 				DEAD_CODE_STRIPPING = NO;
 				DEVELOPMENT_TEAM = LP4AVJ58MH;
 				INFOPLIST_FILE = Loyalty/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				MARKETING_VERSION = 1.0.7;
+				MARKETING_VERSION = 1.0.8;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
@@ -675,11 +675,11 @@
 			baseConfigurationReference = 70C4C5996703DFD90077569B /* Pods-Loyalty.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CURRENT_PROJECT_VERSION = 1.0.7;
+				CURRENT_PROJECT_VERSION = 1.0.8;
 				DEVELOPMENT_TEAM = LP4AVJ58MH;
 				INFOPLIST_FILE = Loyalty/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				MARKETING_VERSION = 1.0.7;
+				MARKETING_VERSION = 1.0.8;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",

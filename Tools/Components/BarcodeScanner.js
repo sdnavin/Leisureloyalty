@@ -12,6 +12,8 @@ const { height } = Dimensions.get('window');
 import * as Permissions from 'expo-permissions';
 
 import { BarCodeScanner as BScan } from 'expo-barcode-scanner';
+import { heightPercentageToDP } from 'react-native-responsive-screen';
+import { Platform } from '@unimodules/core';
 
 export default class BarcodeScanner extends PureComponent {
     constructor(props) {
@@ -27,13 +29,12 @@ export default class BarcodeScanner extends PureComponent {
     
     async componentDidMount() {
         Tools.updateRatePoints(2);
-        
         this.getPermissionsAsync();
     }
     
     getPermissionsAsync = async () => {
         const { status } = await Permissions.askAsync(Permissions.CAMERA);
-        this.setState({ hasCameraPermission: status === 'granted' },()=>{this.forceUpdate()});
+        this.setState({ hasCameraPermission: status === 'granted' },()=>{console.log("hi"); this.forceUpdate()});
     };
     // componentDidMount(){
     //     Tools.updateRatePoints(2);
@@ -41,13 +42,12 @@ export default class BarcodeScanner extends PureComponent {
     
     
     render() {
-        const isActive = this.props.navigation.isFocused();
         
-        const { hasCameraPermission, scanned } = this.state;
+        const { hasCameraPermission } = this.state;
         
-        // if (hasCameraPermission === null) {
-        //   return <Text style={styles.heading} Requesting for camera permission</Text>;
-        // }
+        if (hasCameraPermission === null) {
+          return <Text style={styles.heading} >Requesting for camera permission</Text>;
+        }
         if (hasCameraPermission === false) {
             return <Text style={styles.heading}  >No access to camera</Text>;
         }
@@ -57,7 +57,7 @@ export default class BarcodeScanner extends PureComponent {
             {/* {(isActive)&& */}
             <BScan
             onBarCodeScanned={this.handleBarCodeScanned}
-            style={styles.preview}
+            style={[styles.preview,Platform.OS==='ios'?{}:{flex:1}]}
             />
             {/* // } */}
             {/* // <RNCamera
@@ -71,14 +71,13 @@ export default class BarcodeScanner extends PureComponent {
             )
         }
         handleBarCodeScanned = ({ type, data }) => {
-            this.setState({ scanned: true });
             // alert(`Bar code with type ${type} and data ${data} has been scanned!`);
-            var onDone=this.props.onBarCodeScanned;
+            var onDone=this.props.onBarCodeScanGotData;
             onDone(data);
         };
         
         onBarCodeRead = (e) => {
-            var onDone=this.props.onBarCodeScanned;
+            var onDone=this.props.onBarCodeScanGotData;
             onDone(e);
         }
         
@@ -98,7 +97,8 @@ export default class BarcodeScanner extends PureComponent {
             flexDirection: 'row',
         },
         preview: {
-            flex: 1,
+            width:width,
+            height:heightPercentageToDP('25%'),
             // width:300,height:300,
             // width:width/1.1,
             // height:height/9

@@ -19,7 +19,7 @@ export default class AdBlock extends Component {
         this.OnPressAd = this.OnPressAd.bind(this);
     }
     
-    
+   
     render() {
         return (
             <View>
@@ -27,6 +27,7 @@ export default class AdBlock extends Component {
             <View style={styles.view}>
             <CacheImage
             bg={true}
+            onDone={this.BannerCame}
             style={styles.image}
             uri={this.props.parkInfo.banner}
             /></View>

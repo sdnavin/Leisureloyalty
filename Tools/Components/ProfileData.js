@@ -138,7 +138,7 @@ class ProfileData extends React.Component {
         
         if(this.props.pagetogo==="login"||this.props.pagetogo==="register"){
         }else{
-          console.log('App has come to the foreground!');
+          // console.log('App has come to the foreground!');
           this.AssignProfile("user",'','');
         }
       }
@@ -440,6 +440,7 @@ class ProfileData extends React.Component {
     refreshAccesstoken(){
       this.props.updateLoading(true);
       // this.LoaderView.show();
+      console.log('RT :'+this.props.accessToken.refresh_token);
       
       var details = {
         'refresh_token': this.props.accessToken.refresh_token,
@@ -463,7 +464,7 @@ class ProfileData extends React.Component {
       }, 5000)
       .then((response) => response.text())
       .then((responseJson) => {
-        // console.log('RT :'+responseJson);
+        console.log('RT :'+responseJson);
         dataGot = JSON.parse(responseJson);
         // console.log("J R :"+dataGot);
         if (!Tools.stringIsContains(responseJson, 'error')) {
@@ -509,6 +510,10 @@ class ProfileData extends React.Component {
         this.loaded=0;
         this.setState({setpass:undefined});
         // console.log('UP '+responseJson);
+        if(Tools.stringIsEmpty(responseJson)){
+          this.props.updateLoading(false);
+          return;
+        }
         dataGot=JSON.parse(responseJson);
         
         if(Tools.stringIsContains(responseJson,'denied')){
@@ -532,6 +537,7 @@ class ProfileData extends React.Component {
         
       })
       .catch((error) =>{
+        // console.log('UPE '+error);
         this.loaded=1;
         this.setState({setpass:undefined});
         // console.error(error);
@@ -556,13 +562,15 @@ class ProfileData extends React.Component {
       },5000)
       .then((response) => response.text())
       .then((responseJson) => {
-        // console.log(responseJson);
         dataGot=JSON.parse(responseJson);
         
-        if(!Tools.stringIsContains(responseJson,'denied')||!Tools.stringIsContains(responseJson,'error')){
+        if(!Tools.stringIsContains(responseJson,'denied')&&!Tools.stringIsContains(responseJson,'error')){
           this.props.updateClaims(dataGot);
+
           // this.LoaderView.close();
         }else{
+          console.log("E :"+responseJson);
+
           if(Tools.stringIsContains(responseJson,'denied')){
             this.refreshAccesstoken();
           }
@@ -602,14 +610,14 @@ class ProfileData extends React.Component {
         // console.log(responseJson);
         // dataGot=JSON.parse(responseJson);
         else if(Tools.stringIsContains(responseJson,'already')){
-          //gotprofile
           this.FeedBack=[i18n.t('claimfail'),i18n.t('alreadyclaimed')+tokenId];
         }
         else if(Tools.stringIsContains(responseJson,'notfound')||Tools.stringIsContains(responseJson,'error')||Tools.stringIsContains(responseJson,'invalid')){
-          //gotprofile
           this.FeedBack=[i18n.t('claimfail'),i18n.t('failclaimed')+tokenId];
         }else if(Tools.stringIsContains(responseJson,'success')) {
           this.FeedBack=[i18n.t('claimsuccess'),i18n.t('successclaimed')+tokenId];
+        }else{
+          this.FeedBack=[i18n.t('claimfail'),i18n.t('failclaimed')+tokenId];
         }
         this.props.updateonDismiss({'FeedBack':this.FeedBack});
         this.props.updateLoading(false);

@@ -12,7 +12,8 @@ import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-nativ
 
 import * as UIElements from './UIElements'
 import Colors from '../constants/Colors';
-import glar from '../../assets/glar.png'
+import glar from '../../assets/glar.png';
+
 
 export class CardInfo extends React.Component {
     
@@ -23,34 +24,46 @@ export class CardInfo extends React.Component {
             canuseGlar:false
             // accelerometerData: {},
         };
+        this.onNavigatorEvent=this.onNavigatorEvent.bind(this);
     };
-    
-    componentDidMount() {
+
+    onNavigatorEvent() {
+        this.Accelero();
+    }
+
+    Accelero(){
+        if(Accelerometer._listenerCount>0)
+        Accelerometer.removeAllListeners();
+        this._subscription = null;
         // if(this._subscription===null||this._subscription===undefined){
         // console.log('load');
-        Accelerometer.setUpdateInterval(100);
+        Accelerometer.setUpdateInterval(200);
         Accelerometer.isAvailableAsync().then(useglar=>this.setState({canuseGlar:useglar}));
         this._subscription = Accelerometer.addListener(accelerometerData => {
             // this.setState({glarx:(2500*accelerometerData.x.toFixed(1))-350})
             Animated.timing(this.state.glarx, {
                 toValue: (2000*( accelerometerData.x.toFixed(2)))-350,
-                duration: 100,
+                duration: 200,
             }).start();
         });
+    }
+    
+    componentDidMount() {
+        this.Accelero();
         // }
     }
     
     
     
-    componentWillUnmount() {
-        // console.log('unload');
-        Accelerometer.removeAllListeners();
-        this._subscription = null;
-        // Animated.timing(this.state.glarx, {
-        //     toValue: (2500*( accelerometerData.x)),
-        //     duration: 250,
-        // }).stop();
-    }
+    // componentWillUnmount() {
+    //     console.log('unload');
+    //     Accelerometer.removeAllListeners();
+    //     this._subscription = null;
+    //     // Animated.timing(this.state.glarx, {
+    //     //     toValue: (2500*( accelerometerData.x)),
+    //     //     duration: 250,
+    //     // }).stop();
+    // }
     
     cardFormatting(cardNo){
         cardFormatNo='';
@@ -69,7 +82,7 @@ export class CardInfo extends React.Component {
     render(){
         return (
             <View style={styles.totalView}>
-            
+            <NavigationEvents onDidFocus={this.onNavigatorEvent}/>
             <Image source={cardbg} style={styles.bgcard}/>
             {/* {this.state.canuseGlar&& */}
             <View style={styles.bgglarcardview}>

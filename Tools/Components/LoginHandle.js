@@ -190,8 +190,7 @@ export default class LoginHandle extends Component {
                             
                             <TextInput  allowFontScaling ={false}
                             onChangeText={(text)=>{this.setState({signPassword:text})}}
-                            style={[styles.inputtext,{flex:0.9,width:widthPercentageToDP('90%'),
-                            alignSelf:'center',marginStart:0}]}
+                            style={[styles.inputtext,{flex:0.9,width:widthPercentageToDP('90%'),}]}
                             placeholder="Password"
                             keyboardType='default'
                             // autoFocus={true}
@@ -645,7 +644,7 @@ export default class LoginHandle extends Component {
                                                                             inputTextView:{
                                                                                 height:50,
                                                                                 // width:widthPercentageToDP('75%'),
-                                                                                flex:0.9,
+                                                                                // flex:0.9,
                                                                                 // borderWidth:1,
                                                                                 backgroundColor:colors.inputboxColor,
                                                                                 borderRadius:10,
@@ -656,12 +655,13 @@ export default class LoginHandle extends Component {
                                                                             },
                                                                             inputtext:{
                                                                                 fontSize: 20,
+                                                                                // lineHeight:50,
+                                                                                // height:50,
                                                                                 textAlign:'left',
                                                                                 fontWeight:'200',
-                                                                                // height:50,
                                                                                 color: colors.inputfontColor,
                                                                                 // width:widthPercentageToDP('75%'),
-                                                                                // flex:0.7,
+                                                                                // flex:1,
                                                                                 // borderWidth:1,
                                                                                 // backgroundColor:colors.inputboxColor,
                                                                                 // borderRadius:10,

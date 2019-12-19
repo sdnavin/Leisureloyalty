@@ -322,7 +322,7 @@ getDate(){
             <View style={styles.rowView}>
             {/* <Text allowFontScaling={false}  style={styles.detailstitle}>{i18n.t('email')}</Text> */}
             <View style ={styles.inputView}><TextInput allowFontScaling={false}  style ={styles.inputValue}
-            editable={true}
+            editable={false}
             value={this.props.profile.Email}
             onChangeText={(text) => {this.setState({email:text});
             this.props.profile.Email=text;
@@ -342,7 +342,7 @@ getDate(){
             </View>)}
             <View style ={styles.inputView}> 
             <TextInput allowFontScaling={false} style ={styles.inputValue}
-            editable={true}
+            editable={false}
             maxLength={8}
             value={this.props.profile.Mobile.replace('+974','')}
             onChangeText={(text) => {this.setState({mobile:text});
@@ -448,15 +448,13 @@ getDate(){
             placeholder='Your PO Box'></TextInput></View>
         </View> */}
         {this.drawGap(15)}
-        <TouchableOpacity
+        {this.state.change&&(<TouchableOpacity
         onPress={()=>this.saveChanges()}
         style={styles.buttonSign}
         disabled={this.state.change===false?true:false}>
-        {this.state.change&&(
-            <Text  allowFontScaling={false} style={styles.buttontext}>{i18n.t('savechange')}</Text>   
-            )} 
-            {!this.state.change&&(<Text style={styles.buttontext}>{i18n.t('savechange')}</Text>)} 
-            </TouchableOpacity>
+       
+            <Text style={styles.buttontext}>{i18n.t('savechange')}</Text>
+            </TouchableOpacity>)}
             {this.drawGap(25)}
             
             </View>
